@@ -4,7 +4,7 @@ const cors = require("cors");
 const OpenAI = require("openai");
 
 const app = express();
-const port = 3000;
+const port = 3100;
 
 // Enable CORS
 app.use(cors());
