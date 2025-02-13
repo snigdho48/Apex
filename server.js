@@ -29,7 +29,10 @@ if (!process.env.OPENAI_API_KEY) {
 }
 const shoescategory = ["sandal", "sneaker", "loafer", "boot", "fromal"];
 const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
-
+app.get("/", (req, res) => {
+  res.send("Got It");
+}
+);
 // API endpoint for dress color detection
 app.post("/detect-dress", async (req, res) => {
   try {
