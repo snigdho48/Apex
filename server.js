@@ -1,4 +1,5 @@
 require("dotenv").config({ path: __dirname + "/.env" });
+console.log("🔍 OpenAI API Key:", process.env.OPENAI_API_KEY || "Not found");
 
 const express = require("express");
 const cors = require("cors");
