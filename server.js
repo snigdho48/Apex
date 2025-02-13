@@ -24,7 +24,7 @@ if (!process.env.OPENAI_API_KEY) {
   process.exit(1);
 }
 
-const shoescategory = ["sandal", "sneaker", "loafer", "boot", "formal"];
+const shoescategory = ["sandal", "sneaker", "loafer", "boot", "formal",'jutti','heel','pumpies'];
 const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
 
 app.get("/", (req, res) => {
