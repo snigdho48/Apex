@@ -1,6 +1,7 @@
 require("dotenv").config({ path: __dirname + "/.env" });
 console.log("🔍 OpenAI API Key:", process.env.OPENAI_API_KEY || "Not found");
 
+const http = require("http");
 const express = require("express");
 const cors = require("cors");
 const OpenAI = require("openai");
@@ -9,7 +10,8 @@ const app = express();
 const port = 3100;
 
 // Enable CORS
-app.options("*", cors());  // Handle CORS preflight requests globally
+app.use(cors());
+app.options("*", cors()); // Handle CORS preflight requests globally
 
 // Middleware to parse JSON bodies (increase size limit for large images)
 app.use(express.json({ limit: "10mb" }));
@@ -21,16 +23,18 @@ if (!process.env.OPENAI_API_KEY) {
   );
   process.exit(1);
 }
-const shoescategory = ["sandal", "sneaker", "loafer", "boot", "fromal"];
+
+const shoescategory = ["sandal", "sneaker", "loafer", "boot", "formal"];
 const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
+
 app.get("/", (req, res) => {
   res.send("Got It");
-}
-);
-// API endpoint for dress color detection
+});
+
+// API endpoint for dress detection
 app.post("/", async (req, res) => {
   try {
-    const { imageBase64 } = req.body; // Expecting base64 image data from the request body
+    const { imageBase64 } = req.body;
 
     if (!imageBase64) {
       return res.status(400).json({ error: "No base64 image provided" });
@@ -49,11 +53,9 @@ app.post("/", async (req, res) => {
           content: [
             {
               type: "text",
-              text: `What is the dress in this image and what type of shoes would go with it from ${shoescategory
-                .map((e, i) => (i === shoescategory.length - 1 ? e : `${e}, `))
-                .join(
-                  ""
-                )} category ?suggest me only one category from my suggested category.dont write anything.just give me the category name in reponse.ignore if there is shoes in the image`,
+              text: `What is the dress in this image and what type of shoes would go with it from ${shoescategory.join(
+                ", "
+              )}? Suggest me only one category from my suggested list. Ignore if shoes are present in the image.`,
             },
             {
               type: "image_url",
@@ -67,8 +69,7 @@ app.post("/", async (req, res) => {
 
     console.log(response.choices?.[0]?.message?.content?.trim());
     res.json({
-      shoe:
-        response.choices?.[0]?.message?.content?.trim() || "Color not detected",
+      shoe: response.choices?.[0]?.message?.content?.trim() || "Not detected",
     });
   } catch (error) {
     console.error("❌ Error:", error.response?.data || error.message);
@@ -79,7 +80,10 @@ app.post("/", async (req, res) => {
   }
 });
 
-// Start the Express server
-app.listen(port, () =>
-  console.log(`✅ Server running on http://localhost:${port}`)
-);
+// Create HTTP server
+const server = http.createServer(app);
+
+// Start the HTTP server
+server.listen(port, () => {
+  console.log(`✅ Server running on http://localhost:${port}`);
+});
