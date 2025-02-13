@@ -235,7 +235,7 @@
 
                 const base64Image = canvas.toDataURL("image/jpeg");
 
-                const response = await fetch('http://localhost:3000/detect-dress', {
+                const response = await fetch('http://apex.reachableads.com/detect-dress', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'

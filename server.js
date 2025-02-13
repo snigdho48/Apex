@@ -7,7 +7,14 @@ const app = express();
 const port = 3100;
 
 // Enable CORS
-app.use(cors());
+app.use(
+  cors({
+    origin: "http://apex.reachableads.com", // Adjust for HTTPS if needed
+    methods: "GET,POST",
+    allowedHeaders: "Content-Type",
+  })
+);
+
 
 // Middleware to parse JSON bodies (increase size limit for large images)
 app.use(express.json({ limit: "10mb" }));
