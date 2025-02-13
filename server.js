@@ -1,4 +1,5 @@
-require("dotenv").config();
+require("dotenv").config({ path: __dirname + "/.env" });
+
 const express = require("express");
 const cors = require("cors");
 const OpenAI = require("openai");
@@ -15,7 +16,6 @@ app.use(
   })
 );
 
-
 // Middleware to parse JSON bodies (increase size limit for large images)
 app.use(express.json({ limit: "10mb" }));
 
@@ -26,7 +26,7 @@ if (!process.env.OPENAI_API_KEY) {
   );
   process.exit(1);
 }
-const shoescategory = ["sandal", "sneaker", "loafer", "boot",'fromal'];
+const shoescategory = ["sandal", "sneaker", "loafer", "boot", "fromal"];
 const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
 
 // API endpoint for dress color detection
