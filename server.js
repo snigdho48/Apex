@@ -55,7 +55,7 @@ app.post("/", async (req, res) => {
               type: "text",
               text: `What is the dress in this image and what type of shoes would go with it from ${shoescategory.join(
                 ", "
-              )}? Suggest me only one category from my suggested list. Ignore if shoes are present in the image.`,
+              )}? Suggest me only one category from my suggested list in one word.aging just in one word. Ignore if shoes are present in the image.`,
             },
             {
               type: "image_url",
