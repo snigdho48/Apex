@@ -24,7 +24,8 @@ if (!process.env.OPENAI_API_KEY) {
   process.exit(1);
 }
 
-const shoescategory = ["sandal", "sneaker", "loafer", "boot", "formal",'jutti','heel','pumpies'];
+const manShoes = ["sandal", "sneaker", "loafer", "boot", "formal"];
+const womenShoes = ["boot", "jutti", "heel", "ladisloafer"];
 const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
 
 app.get("/", (req, res) => {
@@ -53,9 +54,11 @@ app.post("/", async (req, res) => {
           content: [
             {
               type: "text",
-              text: `What is the dress in this image and what type of shoes would go with it from ${shoescategory.join(
+              text: `What is the dress in this image and what type of shoes would go with it from ${manShoes.join(
                 ", "
-              )}? Suggest me only one category from my suggested list in one word.aging just in one word. Ignore if shoes are present in the image.`,
+              )} for only men and from ?${womenShoes.join(
+                ", "
+              )} for only women? Suggest me only one category from my suggested list in one word.againg just in one word.category name should be exact same as i gave you,again exact same name not changing any work or adding or deducing anything.exact name as i gave you. Ignore if shoes are present in the image.`,
             },
             {
               type: "image_url",

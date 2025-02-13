@@ -235,7 +235,7 @@
 
                 const base64Image = canvas.toDataURL("image/jpeg");
 
-                const response = await fetch('https://apex.reachableads.com/', {
+                const response = await fetch('http://0.0.0.0:3100', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
@@ -250,7 +250,9 @@
               
                  shoes.forEach((shoe,index)=>{
                             
-                    shoe.src = `https://reachableads-av.s3.ap-southeast-1.amazonaws.com/apex/site/creative/${data.shoe.toLowerCase()}/${index+1}.jpg`;
+//                    shoe.src = `https://reachableads-av.s3.ap-southeast-1.amazonaws.com/apex/site/creative/${data.shoe.toLowerCase()}/${index+1}.jpg`;
+                    shoe.src = `./creative/${data.shoe.toLowerCase()}/${index+1}.jpg`;
+
                     h1.innerText=`Matched Shoes For Your Dress`;
                     button.style.display="none";
                     upload_container.style.display="none";
