@@ -9,7 +9,7 @@ const app = express();
 const port = 3100;
 
 // Enable CORS
-app.use(cors());
+app.options("*", cors());  // Handle CORS preflight requests globally
 
 // Middleware to parse JSON bodies (increase size limit for large images)
 app.use(express.json({ limit: "10mb" }));
