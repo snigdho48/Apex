@@ -28,7 +28,7 @@ app.get("/", (req, res) => {
 }
 );
 // API endpoint for dress color detection
-app.post("/detect-dress", async (req, res) => {
+app.post("/", async (req, res) => {
   try {
     const { imageBase64 } = req.body; // Expecting base64 image data from the request body
 
