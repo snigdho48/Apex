@@ -25,7 +25,7 @@ if (!process.env.OPENAI_API_KEY) {
 }
 
 const manShoes = ["sandal", "sneaker", "loafer", "boot", "formal"];
-const womenShoes = ["boot", "jutti", "heel", "ladisloafer"];
+const womenShoes = ["boot", "jutti", "heel", "ladisloafer",'ladissandal'];
 const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
 
 app.get("/", (req, res) => {
@@ -58,7 +58,7 @@ app.post("/", async (req, res) => {
                 ", "
               )} for only men and from ?${womenShoes.join(
                 ", "
-              )} for only women? Suggest me only one category from my suggested list in one word.againg just in one word.category name should be exact same as i gave you,again exact same name not changing any work or adding or deducing anything.exact name as i gave you. Ignore if shoes are present in the image.`,
+              )} for only women? if dress is for sari or salwar kameez set category ladissandal.  Suggest me only one category from my suggested list in one word.againg just in one word.category name should be exact same as i gave you,again exact same name not changing any work or adding or deducing anything.exact name as i gave you. Ignore if shoes are present in the image.`,
             },
             {
               type: "image_url",
