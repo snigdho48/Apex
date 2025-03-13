@@ -25,7 +25,7 @@ if (!process.env.OPENAI_API_KEY) {
 }
 
 const manShoes = ["sandal", "sneaker", "loafer", "boot", "formal"];
-const womenShoes = ["boot", "jutti", "heel", "ladisloafer",'ladissandal'];
+const womenShoes = [ "jutti", "heel", "ladisloafer",'ladissandal'];
 const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
 
 app.get("/", (req, res) => {
