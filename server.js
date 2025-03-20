@@ -63,11 +63,9 @@ app.post("/", async (req, res) => {
               type: "text",
               text: `What is the dress in this image and what type of shoes would go with it from ${manShoes.join(
                 ", "
-              )} for only men and from ${womenShoes.join(
+              )} for only men. And from ${womenShoes.join(
                 ", "
-              )} for only women? if dress is for  salwar kameez set category womensandel.don't suggest ${womenShoes.join(
-                ", "
-              )} for men. Suggest me only one category from my suggested list in one word.againg just in one word.category name should be exact same as i gave you,again exact same name not changing any work or adding or deducing anything.exact name as i gave you. Ignore if shoes are present in the image.`,
+              )} for only women? if dress is for  salwar kameez set category womensandel. if dress is panjabi suggest mensandel. Suggest me only one category from my suggested list in one word.againg just in one word.category name should be exact same as i gave you,again exact same name not changing any work or adding or deducing anything.exact name as i gave you. Ignore if shoes are present in the image.`,
             },
             {
               type: "image_url",
