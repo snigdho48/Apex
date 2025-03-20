@@ -65,7 +65,7 @@ app.post("/", async (req, res) => {
                 ", "
               )} for only men and from ?${womenShoes.join(
                 ", "
-              )} for only women? if dress is for sari or salwar kameez set category womansandal.  Suggest me only one category from my suggested list in one word.againg just in one word.category name should be exact same as i gave you,again exact same name not changing any work or adding or deducing anything.exact name as i gave you. Ignore if shoes are present in the image.`,
+              )} for only women? if dress is for sari or salwar kameez set category womensandel.  Suggest me only one category from my suggested list in one word.againg just in one word.category name should be exact same as i gave you,again exact same name not changing any work or adding or deducing anything.exact name as i gave you. Ignore if shoes are present in the image.`,
             },
             {
               type: "image_url",
