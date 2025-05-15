@@ -32,7 +32,6 @@ const manShoes = [
   "formalshoe",
   "canvas"
 ];
-const womenShoes = ["jutti", "heel", "pumpies", "womensandel"];
 const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
 
 app.get("/", (req, res) => {
@@ -42,7 +41,7 @@ app.get("/", (req, res) => {
 // API endpoint for dress detection
 app.post("/", async (req, res) => {
   try {
-    const { imageBase64 } = req.body;
+    const { imageBase64,command } = req.body;
 
     if (!imageBase64) {
       return res.status(400).json({ error: "No base64 image provided" });
@@ -54,18 +53,14 @@ app.post("/", async (req, res) => {
       messages: [
         {
           role: "system",
-          content: "You are an AI that detects clothing in images.",
+          content: "You are an AI that detects what kind of image is it.",
         },
         {
           role: "user",
           content: [
             {
               type: "text",
-              text: `What is the dress in this image and what type of shoes would go with it from ${manShoes.join(
-                ", "
-              )} for only men. And from ${womenShoes.join(
-                ", "
-              )} for only women? if dress is for  salwar kameez set category womensandel,if dress ir borka suggest pumpies. if dress is panjabi suggest mensandel. Suggest me only one category from my suggested list in one word.againg just in one word.category name should be exact same as i gave you,again exact same name not changing any work or adding or deducing anything.exact name as i gave you. Ignore if shoes are present in the image.`,
+              text: `${command}`,
             },
             {
               type: "image_url",
